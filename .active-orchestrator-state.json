@@ -1,5 +1,75 @@
 {
   "version": 4,
-  "step": "discovery",
-  "owner": "active-orchestrator"
+  "step": "kb",
+  "owner": "active-orchestrator",
+  "discovery": {
+    "created_by": "discovery-research",
+    "sources": [],
+    "competitors": [
+      { "name": "DentalTec", "notes_file": "docs/discovery/informe-discovery.md" },
+      { "name": "Dentia", "notes_file": "docs/discovery/informe-discovery.md" },
+      { "name": "Dentalink", "notes_file": "docs/discovery/informe-discovery.md" },
+      { "name": "Bilog", "notes_file": "docs/discovery/informe-discovery.md" },
+      { "name": "AgendaPro", "notes_file": "docs/discovery/informe-discovery.md" }
+    ],
+    "problema": "Consultorios odontológicos chicos y medianos de Argentina, con uno o varios profesionales y sillones, gestionan turnos a mano (WhatsApp/papel/planilla); necesitan digitalizar la agenda, evitar solapamientos entre profesionales y sillones, y reducir el ausentismo.",
+    "usuarios": ["Odontólogo", "Recepcionista/secretaria", "Dueño/administrador del consultorio", "Paciente"],
+    "casos_de_uso": [
+      "Como recepcionista, quiero crear un turno eligiendo profesional, sillón y prestación, para que el sistema evite solapamientos.",
+      "Como recepcionista, quiero reprogramar o cancelar un turno, para liberar el horario.",
+      "Como paciente, quiero recibir un recordatorio y confirmar mi turno, para no olvidarme.",
+      "Como odontólogo, quiero ver mi agenda diaria y semanal, para organizar mi jornada.",
+      "Como administrador, quiero configurar la duración de cada prestación, para que los turnos ocupen el tiempo real."
+    ],
+    "funcionalidades_necesarias": [
+      "Agenda multi-profesional y multi-sillón con prevención de solapamientos por profesional y por sillón/box",
+      "Prestaciones con duración configurable",
+      "Crear, reprogramar y cancelar turnos liberando el horario al cancelar",
+      "Vista de agenda diaria y semanal por profesional",
+      "Registro básico de pacientes (datos de contacto)"
+    ],
+    "funcionalidades_opcionales": [
+      "Recordatorios y confirmación automática por WhatsApp",
+      "Reserva online 24/7 para pacientes",
+      "Lista de espera",
+      "Ficha clínica y odontograma",
+      "Cobros con Mercado Pago y señas",
+      "Facturación electrónica ARCA",
+      "Integración con obras sociales y prepagas",
+      "Reportes de ausentismo y campañas de recall"
+    ],
+    "reglas_de_negocio": [
+      "Sin sobreturnos ni solapamientos por profesional ni por sillón/box",
+      "Intervalos [inicio, fin): contiguos no solapan",
+      "Duración del turno definida por la prestación elegida",
+      "Horario de atención propio por profesional y día de la semana",
+      "No se crean turnos en el pasado",
+      "Cancelar libera profesional y sillón, sin penalidad en el MVP",
+      "Reprogramar aplica las mismas validaciones que crear",
+      "Sillones/boxes son recurso compartido entre profesionales, no fijos",
+      "Paciente es entidad con identidad propia e historial de turnos, siempre con datos ficticios"
+    ],
+    "integraciones": [],
+    "restricciones": [
+      "Trabajo académico, entrega en 3 días",
+      "Solo se implementa en código un único change: 'Crear un turno evitando solapamientos por profesional y por sillón/box'; el resto del MVP queda planificado en CHANGES.md, no implementado",
+      "Stack: Node.js + TypeScript + Vitest",
+      "Sin interfaz gráfica, solo módulo de dominio con tests",
+      "Nunca datos reales de pacientes",
+      "Una sola zona horaria: America/Argentina/Buenos_Aires"
+    ],
+    "riesgos": [
+      "Rúbrica de evaluación: informe de Discovery (15+ sistemas, fuentes con URL/fecha, 'No evidenciado'), verificación personal de ≥5 fuentes, coherencia KB/roadmap/AGENTS.md con el Discovery, change con ≥3 escenarios (feliz, error de negocio, borde) con tests en verde y archivado",
+      "Alcance acotado por decisión explícita: solo un change implementado, resto solo planificado",
+      "Concurrencia de creación de turnos no contemplada en el MVP (sin persistencia real todavía)",
+      "Representatividad del informe de mercado no validada con demos reales; varios datos quedaron 'No evidenciado' o solo declarados por el proveedor"
+    ],
+    "preguntas_abiertas": [
+      "Penalidad por cancelación tardía: sin definir",
+      "Política de sobreturnos de urgencia: sin definir",
+      "Funcionalidades marcadas 'No evidenciado' en el informe de competidores"
+    ],
+    "informe_mercado": "docs/discovery/informe-discovery.md",
+    "checklist_file": "docs/discovery/checklist-discovery.md"
+  }
 }
