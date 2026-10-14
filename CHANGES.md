@@ -4,7 +4,7 @@
 > Cada change es atómico: un agente puede implementarlo en una sesión (~4-6 horas).
 > **Leer este archivo antes de ejecutar cualquier `/opsx:propose`.**
 >
-> ⚠️ **Alcance de esta entrega**: por ser un trabajo académico con entrega en 3 días, **solo `C-01` se implementa en código** (dominio puro TypeScript + Vitest, sin UI ni persistencia real), y todavía está **pendiente** (se implementa recién con `/opsx:propose` + `/opsx:apply` + archive, posteriores a este roadmap). `C-02` a `C-06` quedan **planificados en este documento, NO implementados**. Ver `knowledge-base/01_vision_y_objetivos.md` §"Alcance de IMPLEMENTACIÓN en código".
+> ⚠️ **Alcance de esta entrega**: por ser un trabajo académico con entrega en 3 días, **solo `C-01` se implementa en código** (dominio puro TypeScript + Vitest, sin UI ni persistencia real), y ya está **implementado y archivado** (2026-10-14, vía `/opsx:propose` + `/opsx:apply` + archive). `C-02` a `C-06` quedan **planificados en este documento, NO implementados**. Ver `knowledge-base/01_vision_y_objetivos.md` §"Alcance de IMPLEMENTACIÓN en código".
 
 ---
 
@@ -23,7 +23,7 @@ En esta entrega, el paso 3-4 se ejecuta únicamente para `C-01`. Para `C-02`–`
 ## Árbol de dependencias
 
 ```
-C-01 crear-turno-evitando-solapamientos        [PENDIENTE — se implementa en esta entrega]
+C-01 crear-turno-evitando-solapamientos        [IMPLEMENTADO Y ARCHIVADO — 2026-10-14]
   │
   ├── C-02 prestaciones-duracion-configurable   [PLANIFICADO — no implementado]
   ├── C-05 registro-basico-pacientes            [PLANIFICADO — no implementado]
@@ -79,7 +79,7 @@ Paso │ Agente A (Catálogo/Pacientes)        │ Agente B (Validaciones/Estado
 > Única fase con implementación de código en esta entrega. Cubre, como mínimo, los 3 escenarios exigidos (feliz, error de negocio, borde) con tests en verde.
 
 ### [C-01] `crear-turno-evitando-solapamientos`
-- **Estado**: `[ ]` **pendiente — se implementa en esta entrega** (único change de código de esta entrega; ver `knowledge-base/01_vision_y_objetivos.md`)
+- **Estado**: `[x]` **implementado y archivado (2026-10-14)** — archivo: `openspec/changes/archive/2026-10-14-crear-turno-evitando-solapamientos/`; spec: `openspec/specs/gestion-de-turnos/spec.md` (único change de código de esta entrega; ver `knowledge-base/01_vision_y_objetivos.md`)
 - **Scope**:
   - Entidades de dominio (in-memory, sin persistencia real): `Turno`, `Profesional`, `Sillon`, `Prestacion`, `Paciente`
   - Value Objects: `IntervaloTiempo` (semántica `[inicio, fin)`, RN-TU-03)
@@ -209,7 +209,7 @@ Paso │ Agente A (Catálogo/Pacientes)        │ Agente B (Validaciones/Estado
 
 | Change | Nombre | Estado | Governance | Dependencias |
 |---|---|---|---|---|
-| `C-01` | crear-turno-evitando-solapamientos | pendiente — se implementa en esta entrega | CRITICO | ninguna |
+| `C-01` | crear-turno-evitando-solapamientos | implementado y archivado (2026-10-14) | CRITICO | ninguna |
 | `C-02` | prestaciones-duracion-configurable | planificado, no implementado | MEDIO | `C-01` |
 | `C-03` | reprogramar-y-cancelar-turnos | planificado, no implementado | MEDIO | `C-01`, `C-06` |
 | `C-04` | vista-agenda-diaria-semanal | planificado, no implementado | BAJO | `C-01`, `C-06` |
