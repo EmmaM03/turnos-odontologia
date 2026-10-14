@@ -1,0 +1,36 @@
+1. FUENTE 1 - Boletín Oficial (normativa)
+URL: https://www.boletinoficial.gob.ar/detalleAviso/primera/343656/20260629
+Qué decía el informe original: que la RG 5866/2026 extendía la facturación electrónica a más profesionales (incluyendo odontólogos y monotributistas), con vigencia general el 1/11/2026.
+Qué encontré: La RG 5866/2026 existe (ARCA, firmada el 26/06/2026, BO 29/06/2026) y regula el régimen general de emisión de comprobantes. El punto 16.1 "Sujetos comprendidos" lista entidades financieras, de seguros, emisoras de tarjetas e instituciones educativas privadas. Búsqueda "odont": 0 resultados. "monotribut": 0 resultados. La vigencia que menciona es el 1 de julio de 2026.
+¿Coincide?: NO. La norma existe, pero el informe original le inventó el alcance (odontólogos/monotributistas) y la fecha (1/11/2026). Ya corregido con Ajustar: quedó como "No evidenciado" para el sector odontológico y se quitó de las oportunidades.
+
+2. FUENTE 2 - dentia.tech (sitio oficial / página de precios)
+URL: https://dentia.tech (sección Precios)
+Qué decía el informe: Basic ARS 20.000/mes (2 usuarios, 1 sucursal); Pro ARS 30.000 (10 usuarios, 3 sucursales); Elite ARS 40.000 (ilimitado). Prueba gratuita 14 días.
+Qué encontré: Básico $20.000/mes (hasta 2 usuarios y 1 sucursal), Pro $30.000/mes (hasta 10 usuarios y 3 sucursales), Elite $40.000/mes (usuarios y sucursales ilimitados). "Precios finales en pesos", sin contrato, "Probá 14 días gratis, sin tarjeta". Además: plan anual con 2 meses gratis; recordatorios por WhatsApp desde el plan Pro; asistente IA que agenda por WhatsApp 24/7 y cobro de seña solo en Elite.
+¿Coincide?: SÍ. Precios, límites y prueba gratuita coinciden. Matiz: el informe presenta el asistente IA por WhatsApp como característica general de Dentia, pero solo está en el plan más caro.
+
+3. FUENTE 3 - softwaredentalink.com/planes (página de precios oficial)
+URL: https://www.softwaredentalink.com/planes
+Qué decía el informe: "Desde USD 29/usuario/mes; plan clínica (hasta 30 usuarios) ≈ USD 549/mes", citando como fuente la página oficial de planes.
+Qué encontré: La página de planes no publica precios. Búsquedas "29": sin coincidencias; "549": sin coincidencias; "USD": [0]; "$": [0]. El botón principal es "Solicita tu cotización" y declara "Sin contratos o plazos mínimos de uso". Sí figuran +15.000 clientes, +12M pacientes únicos, +45M citas por año y +20 países (dato del proveedor, coincide con el informe).
+¿Coincide?: NO en precios. El informe atribuye a la web oficial precios que no aparecen allí; deben marcarse como "No publicado (cotización a pedido)". SÍ en datos de adopción.
+
+4. FUENTE 4 - Comparativa de Odonthia (fuente de terceros / competidor)
+URL: https://odonthia.com/blog/mejores-software-odontologicos-argentina-2026
+Fecha del relevamiento según la fuente: 09/10/2026
+Qué decía el informe (citando esta fuente): DentalSoft ARS 30.000/60.000 con 3 meses gratis; Odonto.ar USD 29/49/99; Bilog Freemium + Lite USD 25 + Premium USD 40 por usuario/mes.
+Qué encontré:
+- DentalSoft: ARS 30.000 (1 profesional) / ARS 60.000 por mes; gratis 3 meses hasta 50 turnos/mes. COINCIDE.
+- Odonto.ar: USD 29/49/99 por mes, prueba de 30 días. COINCIDE.
+- Odonthia: Gratis / ARS 20.900 / ARS 46.900 por mes. COINCIDE.
+- Bilog: "No publica (Freemium sin costo; el resto, por cotización)". Freemium 50 pacientes, 1 profesional. NO COINCIDE: los precios Lite USD 25 y Premium USD 40 no aparecen en esta fuente.
+- Dentalink: "No publica precios". Confirma el hallazgo de la Fuente 3.
+- DentalCore: "USD 50 por mes con 2 usuarios, más USD 10 por usuario extra; garantía de devolución de 14 días". CONTRADICE al informe (Starter gratis / Pro USD 49 / Business USD 149, citando dentalcore.app).
+¿Coincide?: PARCIALMENTE. Bien citados DentalSoft, Odonto.ar y Odonthia. Mal atribuidos los precios de Bilog (inventados). Precio de DentalCore inconsistente entre fuentes. Observación: es la comparativa de un competidor directo, no es neutral; sus datos deben tratarse como orientativos.
+
+5. FUENTE 5 - Capterra, ficha de Curve Dental (marketplace)
+URL: https://www.capterra.com.ar (ficha de Curve Dental, pestaña Vista rápida)
+Qué decía el informe: "Desde ≈USD 350/mes por sede (según fuentes de terceros); sin plan gratuito ni trial gratuito", citando Capterra y SelectHub.
+Qué encontré: En la ficha de Curve Dental, Capterra indica "No se han encontrado precios", "Versión gratuita: No" y "Prueba gratuita: No". El precio US$ 40/mes que aparece en la misma sección corresponde a otro software de la comparación, no a Curve Dental. Búsqueda "350": sin coincidencias.
+¿Coincide?: PARCIALMENTE. Coincide que no tiene versión ni prueba gratuita. El precio de ≈USD 350 no figura en Capterra; si proviene de SelectHub, debe citarse solo esa fuente, o marcarse como "No evidenciado".
