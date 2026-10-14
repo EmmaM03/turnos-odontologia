@@ -105,7 +105,13 @@ El sistema SHALL considerar únicamente los turnos en estado `confirmado` al val
 - **THEN** el turno se crea en estado `confirmado`
 
 ### Requirement: Orden de validación y primer error
-El sistema SHALL evaluar las validaciones en este orden fijo: (1) turno en el pasado, (2) solapamiento por profesional, (3) solapamiento por sillón. Ante varias violaciones simultáneas, se informa solo el error de la primera que falla. Ninguna validación fallida registra el turno. El orden SHALL admitir nuevas validaciones posteriores sin alterar las existentes.
+El sistema SHALL evaluar las validaciones en este orden fijo: (0) existencia de las entidades referenciadas (profesional, sillón, paciente y prestación), (1) turno en el pasado, (2) solapamiento por profesional, (3) solapamiento por sillón. Ante varias violaciones simultáneas, se informa solo el error de la primera que falla. Ninguna validación fallida registra el turno. El orden SHALL admitir nuevas validaciones posteriores sin alterar las existentes.
+
+#### Scenario: Prestación inexistente con inicio en el pasado
+- **GIVEN** no existe ninguna prestación con id `prest-999`
+- **WHEN** se crea un turno con `prof-1`, `sillon-1`, `pac-1`, `prest-999` e inicio `2026-11-01T10:00:00-03:00`
+- **THEN** la creación se rechaza con `EntidadNoEncontradaError` que identifica la entidad `prestacion` y el id `prest-999`
+- **AND** no se registra ningún turno
 
 #### Scenario: Turno en el pasado que además se solapa
 - **GIVEN** el reloj marca "ahora" en `2026-11-02T12:00:00-03:00`
@@ -202,10 +208,10 @@ El sistema SHALL informar cada rechazo mediante un error tipado distinguible por
 ### Requirement: Sobreturnos no soportados
 El sistema SHALL NOT ofrecer ninguna excepción a las reglas de no solapamiento: no existe sobreturno de urgencia ni forma de forzar un turno superpuesto. Un turno con exactamente el mismo intervalo que otro `confirmado` del mismo profesional o sillón se rechaza por las reglas de solapamiento (política abierta en `10_preguntas_abiertas.md`).
 
-#### Scenario: Intento de sobreturno en el mismo intervalo y sillón
+#### Scenario: Intento de sobreturno del mismo profesional en otro sillón con el mismo intervalo
 - **GIVEN** existe un turno `confirmado` de `prof-1` en `sillon-1` con intervalo `[2026-11-02T10:00:00-03:00, 2026-11-02T10:30:00-03:00)`
-- **WHEN** se crea un turno con `prof-2`, `sillon-1`, `pac-2`, `prest-consulta` e inicio `2026-11-02T10:00:00-03:00`
-- **THEN** la creación se rechaza con `SolapamientoError` con `recurso = 'sillon'`
+- **WHEN** se crea un turno con `prof-1`, `sillon-2`, `pac-2`, `prest-consulta` e inicio `2026-11-02T10:00:00-03:00`
+- **THEN** la creación se rechaza con `SolapamientoError` con `recurso = 'profesional'`
 
 ### Requirement: Solapamiento por paciente explícitamente no cubierto
 El sistema SHALL NOT validar en esta capability que un mismo paciente tenga turnos superpuestos con distintos profesionales y sillones: ninguna regla de negocio lo exige y queda registrado como pregunta abierta en `knowledge-base/10_preguntas_abiertas.md`. Incorporarlo requiere un change con spec aprobado.

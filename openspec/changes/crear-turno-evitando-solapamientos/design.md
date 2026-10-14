@@ -72,7 +72,7 @@ Sigue `08_arquitectura_propuesta.md` y suma `puertos/` (D-02). Los fakes viven e
 
 Entrada: `SolicitudDeTurno = { profesionalId, sillonId, pacienteId, prestacionId, inicio: Date }` (objeto con nombre en lugar de 5 parámetros posicionales, para evitar confundir IDs del mismo tipo `string`).
 
-1. **Resolver referencias** en orden profesional → sillón → paciente → prestación; la primera que falta lanza `EntidadNoEncontradaError(entidad, id)`. Va antes que las validaciones porque `fin` depende de la prestación.
+1. **Resolver referencias** (paso 0 del orden de validación del spec) en orden profesional → sillón → paciente → prestación; la primera que falta lanza `EntidadNoEncontradaError(entidad, id)`. Va antes que las validaciones 1 a 3 porque `fin` depende de la prestación.
 2. **Calcular** el intervalo con `IntervaloTiempo.desdeDuracion(inicio, prestacion.duracionMinutos)` (RN-TU-05).
 3. **Ejecutar la cadena de validaciones** en orden; la primera que lanza corta el flujo (D-04).
 4. **Construir** `Turno` con `estado = 'confirmado'` e `id = repositorio.proximoId()`, **guardar** y **devolver**.
@@ -88,7 +88,7 @@ interface ValidacionDeTurno {
 // TurnoCandidato = { profesionalId, sillonId, intervalo }
 ```
 
-`ServicioDeTurnos` mantiene un `readonly ValidacionDeTurno[]` construido por una función `validacionesDeCreacion({ reloj, repositorio })` que devuelve, en este orden:
+`ServicioDeTurnos` mantiene un `readonly ValidacionDeTurno[]` construido por una función `validacionesDeCreacion({ reloj, repositorio })` que devuelve, en este orden (pasos 1 a 3 del orden de validación del spec; el paso 0, existencia de entidades, ya ocurrió en el flujo):
 
 1. `NoEnElPasado(reloj)` → `TurnoEnElPasadoError` si `intervalo.inicio.getTime() <= reloj.ahora().getTime()` (D-05, borde estricto).
 2. `ProfesionalLibre(repositorio)` → `SolapamientoError('profesional')` si algún turno `confirmado` del mismo profesional se solapa.
@@ -139,7 +139,7 @@ Las validaciones individuales (`NoEnElPasado`, etc.) **no** son seams: se ejerci
 - [El repositorio devuelve todos los turnos: O(n) por creación] → Aceptable sin persistencia; una futura capa indexaría por `(profesionalId, inicio)` y `(sillonId, inicio)` (ver `04_modelo_de_datos.md`).
 - [Sin atomicidad entre validar y guardar] → Fuera de alcance (concurrencia es pregunta abierta Media); documentado como no-goal.
 - [Un fake que filtre por estado ocultaría la regla SU-02] → El filtrado vive en las validaciones; el escenario del turno `cancelado` lo prueba a través del servicio.
-- [Validar referencias antes que el pasado cambia qué error gana si coinciden] → Es inevitable (no hay `fin` sin prestación) y queda fijado en el spec (Requirement "Referencias inexistentes").
+- [Validar referencias antes que el pasado cambia qué error gana si coinciden] → Es inevitable (no hay `fin` sin prestación) y queda fijado en el spec como paso 0 del Requirement "Orden de validación y primer error" (escenario "Prestación inexistente con inicio en el pasado").
 - [`C-03` necesitará excluir el propio turno al reprogramar] → `TurnoCandidato` está pensado para sumar un campo opcional sin romper las validaciones existentes.
 - [Uso accidental de `any` o `new Date()` desnudo] → `strict: true` más una tarea final de verificación por búsqueda en `src/domain`.
 
