@@ -100,6 +100,6 @@
   "roadmap": {
     "created_by": "roadmap-generator",
     "source": "CHANGES.md",
-    "changes": ["C-01", "C-02", "C-03", "C-04", "C-05"]
+    "changes": ["C-01", "C-02", "C-03", "C-04", "C-05", "C-06"]
   }
 }
