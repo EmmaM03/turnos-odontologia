@@ -31,7 +31,7 @@ Este es un trabajo académico con entrega en 3 días. El MVP de arriba es lo que
 
 > **"Crear un turno evitando solapamientos por profesional y por sillón/box"**
 
-Este change cubre, como mínimo, 3 escenarios verificables con tests en verde: un caso feliz (turno creado sin conflictos), un caso de error de negocio (intento de solapamiento por profesional o por sillón) y un caso de borde (p. ej. turnos contiguos en el límite `[inicio, fin)`, o un turno fuera del horario de atención del profesional). Todo el resto del MVP documentado —reprogramar, cancelar, vistas de agenda, registro de pacientes, etc.— queda **planificado pero NO implementado** en esta entrega; ver `CHANGES.md` para el detalle de changes pendientes.
+Este change cubre, como mínimo, 3 escenarios verificables con tests en verde: un caso feliz (turno creado sin conflictos), un caso de error de negocio (intento de solapamiento por profesional o por sillón) y un caso de borde (turnos contiguos en el límite `[inicio, fin)` — un turno que empieza exactamente cuando termina otro no se considera solapado). Todo el resto del MVP documentado —reprogramar, cancelar, vistas de agenda, registro de pacientes, etc.— queda **planificado pero NO implementado** en esta entrega; ver `CHANGES.md` para el detalle de changes pendientes.
 
 Esta distinción (KB/roadmap amplios vs. un único change implementado) es intencional y debe mantenerse coherente en toda la documentación generada a partir de aquí — ningún archivo de esta KB debe dar a entender que el resto del MVP ya está construido.
 
@@ -57,6 +57,10 @@ Se investigaron 20 sistemas competidores de gestión de turnos/agenda odontológ
 
 ## Métricas de éxito
 
-- 100% de los turnos creados vía el módulo de dominio respetan las reglas de no solapamiento (RN-TU-01, RN-TU-02 en `05_reglas_de_negocio.md`).
-- El change implementado pasa sus tests (feliz + error de negocio + borde) en verde y queda archivado en OpenSpec.
-- Coherencia verificable entre Discovery, Knowledge Base, roadmap y el código del change implementado (criterio de evaluación del trabajo académico).
+Métricas de **producto** (valor para el consultorio, no del trabajo académico):
+- 0 turnos solapados por profesional y 0 turnos solapados por sillón/box (RN-TU-01, RN-TU-02 en `05_reglas_de_negocio.md`).
+- Reducción del tiempo que le toma a la secretaria/recepcionista cargar un turno nuevo, frente a la gestión manual actual (WhatsApp, papel, planilla).
+- Reducción del ausentismo de pacientes respecto de la gestión manual actual.
+
+Métrica técnica (separada de las de producto):
+- Tests en verde / cobertura de los escenarios del change implementado (caso feliz, error de negocio y borde — ver `06_funcionalidades.md`, US-001).

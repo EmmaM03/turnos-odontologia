@@ -27,7 +27,7 @@ Organizadas por **épica** y luego por **historia de usuario** (formato US-NNN).
 
 **Criterios de aceptación**:
 - [ ] CA-1: cancelar un turno libera el horario del profesional y del sillón, sin penalidad (MVP).
-- [ ] CA-2: reprogramar aplica las mismas validaciones que crear un turno nuevo (RN-TU-06 a RN-TU-08).
+- [ ] CA-2: reprogramar aplica las mismas validaciones que crear un turno nuevo (RN-TU-01 a RN-TU-06).
 
 **Reglas relacionadas**: RN-TU-07, RN-TU-08.
 

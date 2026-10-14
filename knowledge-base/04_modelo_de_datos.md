@@ -31,7 +31,7 @@ Paciente    (1) ──< titular de >── (N) Turno
   - El intervalo `[inicio, fin)` de un turno no puede solaparse con otro turno del mismo profesional en estado `confirmado` (RN-TU-01).
   - El intervalo `[inicio, fin)` de un turno no puede solaparse con otro turno del mismo sillón en estado `confirmado` (RN-TU-02).
   - `inicio` no puede ser una fecha/hora en el pasado respecto al momento de creación (RN-TU-04).
-  - `[inicio, fin)` debe caer dentro del `HorarioAtencion` del profesional para ese día de la semana (RN-TU-05).
+  - `[inicio, fin)` debe caer dentro del `HorarioAtencion` del profesional para ese día de la semana (RN-TU-06). Nota: RN-TU-06 está **documentada pero no implementada** en el único change de código de esta entrega (ver `05_reglas_de_negocio.md`) — esta restricción queda solo documentada, no se valida en el código actual.
 - Índices relevantes: no aplica (sin persistencia). En una futura capa de persistencia, se recomendaría indexar por `(profesionalId, inicio)` y `(sillonId, inicio)` para las búsquedas de solapamiento.
 
 ### Profesional

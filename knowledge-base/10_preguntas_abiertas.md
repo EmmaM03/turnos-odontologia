@@ -2,7 +2,20 @@
 
 ## Inconsistencias detectadas
 
-Ninguna inconsistencia entre fuentes de Discovery detectada al generar esta Knowledge Base (checklist, informe de mercado, verificación de fuentes y `.active-orchestrator-state.json` son coherentes entre sí sobre el alcance, las reglas de negocio y el stack).
+### 1. Inconsistencia de precio de DentalCore entre fuentes (sin corregir — queda documentada)
+
+La sección E "Verificación de fuentes" de `docs/discovery/informe-discovery.md` registra una inconsistencia de precio para **DentalCore** entre dos fuentes citadas en el informe de mercado:
+- Web propia de DentalCore (`dentalcore.app`, según cita del informe original): Starter gratis / Pro USD 49/mes / Business USD 149/mes.
+- Comparativa de Odonthia (`odonthia.com/blog/mejores-software-odontologicos-argentina-2026`): USD 50/mes con 2 usuarios incluidos, más USD 10 por usuario extra, con garantía de devolución de 14 días.
+
+Ambas cifras no son conciliables entre sí (estructura de planes distinta: por tramos fijos vs. por usuario). No se resolvió cuál es la correcta — queda como dato "No evidenciado" de forma confiable, sin impacto en el MVP ni en el change implementado (es solo contexto de mercado).
+
+### 2. Inconsistencias internas de la Knowledge Base (detectadas y corregidas el 2026-10-13)
+
+Al revisar la KB se detectaron 3 inconsistencias internas, ya corregidas en esta misma fecha:
+- **`04_modelo_de_datos.md`**: la restricción de horario de atención citaba el código **RN-TU-05** (que en realidad es la regla de duración del turno, definida por la prestación). Se corrigió la cita al código correcto, **RN-TU-06**, y se agregó la aclaración de que esa regla está documentada pero **no implementada** en el change de código actual.
+- **`01_vision_y_objetivos.md`**: el listado de casos de borde del change implementado incluía "turno fuera del horario de atención del profesional", pero esa regla (RN-TU-06) no está implementada en el change de código. Se quitó ese caso borde, dejando únicamente el de turnos contiguos (`[inicio, fin)`).
+- **`06_funcionalidades.md`**: en US-002, el criterio de aceptación CA-2 decía que reprogramar cubre "RN-TU-06 a RN-TU-08"; el rango correcto es **RN-TU-01 a RN-TU-06**. Se corrigió el rango.
 
 ## Preguntas abiertas (priorizadas)
 
