@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "step": "find-skill",
+  "step": "registry",
   "owner": "active-orchestrator",
   "discovery": {
     "created_by": "discovery-research",
@@ -110,48 +110,87 @@
         "name": "tdd",
         "source": "mattpocock/skills@tdd",
         "installs": "1.1M",
-        "why": "El proyecto tiene Strict TDD Mode habilitado y stack Node.js+TypeScript+Vitest; esta skill (de Matt Pocock, referente TypeScript) formaliza el ciclo red-green-refactor que el change C-01 ya debe seguir."
+        "why": "El proyecto tiene Strict TDD Mode habilitado y stack Node.js+TypeScript+Vitest; esta skill (de Matt Pocock, referente TypeScript) formaliza el ciclo red-green-refactor que el change C-01 ya debe seguir.",
+        "decision": "instalada",
+        "decision_rationale": "Escribir primero el test de cada escenario del spec asegura la trazabilidad spec-test que pide la fase Verify de OPSX."
       },
       {
         "name": "domain-modeling",
         "source": "mattpocock/skills@domain-modeling",
         "installs": "813K",
-        "why": "system_type del proyecto es 'módulo de dominio puro en TypeScript, sin UI ni persistencia real'; esta skill da patrones de modelado de dominio (tipos, invariantes, value objects) directamente aplicables a entidades como Turno, Profesional, Sillón/Box y a las reglas de no-solapamiento."
+        "why": "system_type del proyecto es 'módulo de dominio puro en TypeScript, sin UI ni persistencia real'; esta skill da patrones de modelado de dominio (tipos, invariantes, value objects) directamente aplicables a entidades como Turno, Profesional, Sillón/Box y a las reglas de no-solapamiento.",
+        "decision": "descartada",
+        "decision_rationale": "El dominio ya está modelado en la Knowledge Base (04_modelo_de_datos.md y 08_arquitectura_propuesta.md); sumarla agrega riesgo de sobrediseño para un alcance de un solo change."
       },
       {
         "name": "code-review",
         "source": "mattpocock/skills@code-review",
         "installs": "726.7K",
-        "why": "Gate de calidad genérico para TypeScript del mismo autor que tdd/domain-modeling; útil como revisión previa a archivar el change C-01 dado el alcance académico con rúbrica estricta."
+        "why": "Gate de calidad genérico para TypeScript del mismo autor que tdd/domain-modeling; útil como revisión previa a archivar el change C-01 dado el alcance académico con rúbrica estricta.",
+        "decision": "descartada",
+        "decision_rationale": "Se superpone con la fase Verify de OPSX, que ya cubre ese gate de calidad antes de archivar."
       },
       {
         "name": "vitest",
         "source": "antfu/skills@vitest",
         "installs": "40.4K",
-        "why": "Vitest es el test runner declarado en el stack; esta skill es de Anthony Fu (mantenedor del ecosistema Vite/Vitest), cubre buenas prácticas específicas del runner (mocking, fixtures, config) que la skill genérica de TDD no cubre."
+        "why": "Vitest es el test runner declarado en el stack; esta skill es de Anthony Fu (mantenedor del ecosistema Vite/Vitest), cubre buenas prácticas específicas del runner (mocking, fixtures, config) que la skill genérica de TDD no cubre.",
+        "decision": "instalada",
+        "decision_rationale": "Es el test runner elegido explícitamente en el Discovery (restricciones de stack)."
       },
       {
         "name": "typescript-advanced-types",
         "source": "wshobson/agents@typescript-advanced-types",
         "installs": "87K",
-        "why": "El modelo de dominio necesita tipos que expresen intervalos [inicio, fin), estados de turno y uniones discriminadas (ej. resultado válido vs. error de negocio por solapamiento); esta skill cubre ese nivel de tipado avanzado en TS puro, sin frameworks."
+        "why": "El modelo de dominio necesita tipos que expresen intervalos [inicio, fin), estados de turno y uniones discriminadas (ej. resultado válido vs. error de negocio por solapamiento); esta skill cubre ese nivel de tipado avanzado en TS puro, sin frameworks.",
+        "decision": "descartada",
+        "decision_rationale": "No seleccionada en el gate de instalación; sin justificación adicional pedida por el usuario."
       },
       {
         "name": "javascript-testing-patterns",
         "source": "wshobson/agents@javascript-testing-patterns",
         "installs": "20K",
-        "why": "Complemento opcional a tdd/vitest: patrones generales de testing en JS/TS (tabla de casos, test doubles) útiles para cubrir los ≥3 escenarios requeridos (feliz, error de negocio, borde) del change C-01."
+        "why": "Complemento opcional a tdd/vitest: patrones generales de testing en JS/TS (tabla de casos, test doubles) útiles para cubrir los ≥3 escenarios requeridos (feliz, error de negocio, borde) del change C-01.",
+        "decision": "descartada",
+        "decision_rationale": "No seleccionada en el gate de instalación; sin justificación adicional pedida por el usuario."
       },
       {
         "name": "zod",
         "source": "pproenca/dot-skills@zod",
         "installs": "6.8K",
-        "why": "Opcional/baja confianza (pocas instalaciones, autor no reconocido): útil solo si se decide validar en runtime los datos de entrada del dominio (fechas, duración de prestación) con Zod en lugar de solo tipos estáticos."
+        "why": "Opcional/baja confianza (pocas instalaciones, autor no reconocido): útil solo si se decide validar en runtime los datos de entrada del dominio (fechas, duración de prestación) con Zod en lugar de solo tipos estáticos.",
+        "decision": "descartada",
+        "decision_rationale": "Dominio puro sin entradas externas que validar en runtime, y la recomendación misma es de baja confianza."
       }
     ],
     "not_recommended_notes": [
       "Se buscaron skills de 'scheduling' y 'calendar' en skills.sh: los resultados relevantes (Lark Calendar, Google Workspace Calendar, event-planning) son todos integraciones con calendarios/APIs externas (Lark, Google), no modelado de reglas de negocio de turnos; no aplican a un módulo de dominio puro sin integraciones ni UI, así que no se incluyen en la lista."
     ],
     "installed": ["tdd", "vitest"]
+  },
+  "registry": {
+    "created_by": "skill-registry",
+    "path": ".atl/skill-registry.md",
+    "skills_scanned": 10,
+    "skills_listed": [
+      "tdd",
+      "vitest",
+      "active-orchestrator",
+      "agent-instruction",
+      "discovery-research",
+      "find-skill",
+      "kb-creator",
+      "roadmap-generator",
+      "skill-creator",
+      "web-scraper"
+    ],
+    "excluded": [
+      "skill-registry (self)",
+      "anthropic-skills:* synced built-ins (browser, docs, pdf, pptx, xlsx, computer-use, etc.) — generic platform capabilities, not project/coding skills"
+    ],
+    "decisions_section_included": true,
+    "project_conventions_found": false,
+    "engram_saved": true,
+    "engram_topic_key": "skill-registry"
   }
 }
