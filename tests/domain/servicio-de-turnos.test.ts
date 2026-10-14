@@ -75,6 +75,10 @@ describe('ServicioDeTurnos.crear', () => {
       const turno = servicio.crear(solicitud('2026-11-02T10:00:00-03:00'));
 
       expect(turno.estado).toBe('confirmado');
+      expect(turno.profesionalId).toBe('prof-1');
+      expect(turno.sillonId).toBe('sillon-1');
+      expect(turno.pacienteId).toBe('pac-1');
+      expect(turno.prestacionId).toBe('prest-consulta');
       expect(turno.inicio.getTime()).toBe(instante('2026-11-02T10:00:00-03:00').getTime());
       expect(turno.fin.getTime()).toBe(instante('2026-11-02T10:30:00-03:00').getTime());
       expect(repositorio.todos()).toEqual([turno]);
