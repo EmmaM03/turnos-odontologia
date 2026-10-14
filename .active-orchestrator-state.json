@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "step": "registry",
+  "step": "done",
   "owner": "active-orchestrator",
   "discovery": {
     "created_by": "discovery-research",
@@ -192,5 +192,34 @@
     "project_conventions_found": false,
     "engram_saved": true,
     "engram_topic_key": "skill-registry"
+  },
+  "agents": {
+    "created_by": "agent-instruction",
+    "outputs": ["AGENTS.md", "CLAUDE.md"],
+    "synced": true,
+    "sections": [
+      "Stack Tecnológico",
+      "Base de Conocimiento",
+      "Skills Disponibles",
+      "Roadmap de Changes",
+      "Reglas Duras (específicas del proyecto)",
+      "Flujo de Trabajo"
+    ],
+    "hard_rules_confirmed": [
+      "TypeScript estricto, sin any en el módulo de dominio",
+      "Dominio sin dependencias externas (solo TypeScript puro + Vitest en tests)",
+      "Nunca new Date() sin argumentos dentro del dominio; reloj inyectado como parámetro",
+      "Fechas en tests/ejemplos siempre ISO con offset explícito -03:00 (America/Argentina/Buenos_Aires)",
+      "Nunca datos reales de pacientes en fixtures/tests",
+      "Ningún cambio de reglas de negocio sin change de OpenSpec con spec aprobado; ante discrepancia código/spec, manda el spec"
+    ],
+    "hard_rule_discarded": null,
+    "hard_rules_revision_note": "La candidata original 'zona horaria explícita' fue descartada en el primer gate y luego reemplazada por el usuario con una formulación más precisa (ISO con offset -03:00 + reloj inyectado, prohibido new Date() sin argumentos); se agregó además una regla propia sobre primacía del spec OpenSpec sobre el código.",
+    "global_claude_md_referenced": true,
+    "roles_mapped": {
+      "Domain Core": ["tdd", "vitest"],
+      "Orquestación": ["active-orchestrator", "agent-instruction", "kb-creator", "roadmap-generator", "discovery-research", "find-skill", "skill-creator", "web-scraper"]
+    },
+    "skill_registry_source": ".atl/skill-registry.md"
   }
 }
