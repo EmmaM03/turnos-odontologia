@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "step": "roadmap",
+  "step": "find-skill",
   "owner": "active-orchestrator",
   "discovery": {
     "created_by": "discovery-research",
@@ -101,5 +101,57 @@
     "created_by": "roadmap-generator",
     "source": "CHANGES.md",
     "changes": ["C-01", "C-02", "C-03", "C-04", "C-05", "C-06"]
+  },
+  "skills": {
+    "created_by": "find-skill",
+    "mode": "recommend_only",
+    "recommended": [
+      {
+        "name": "tdd",
+        "source": "mattpocock/skills@tdd",
+        "installs": "1.1M",
+        "why": "El proyecto tiene Strict TDD Mode habilitado y stack Node.js+TypeScript+Vitest; esta skill (de Matt Pocock, referente TypeScript) formaliza el ciclo red-green-refactor que el change C-01 ya debe seguir."
+      },
+      {
+        "name": "domain-modeling",
+        "source": "mattpocock/skills@domain-modeling",
+        "installs": "813K",
+        "why": "system_type del proyecto es 'módulo de dominio puro en TypeScript, sin UI ni persistencia real'; esta skill da patrones de modelado de dominio (tipos, invariantes, value objects) directamente aplicables a entidades como Turno, Profesional, Sillón/Box y a las reglas de no-solapamiento."
+      },
+      {
+        "name": "code-review",
+        "source": "mattpocock/skills@code-review",
+        "installs": "726.7K",
+        "why": "Gate de calidad genérico para TypeScript del mismo autor que tdd/domain-modeling; útil como revisión previa a archivar el change C-01 dado el alcance académico con rúbrica estricta."
+      },
+      {
+        "name": "vitest",
+        "source": "antfu/skills@vitest",
+        "installs": "40.4K",
+        "why": "Vitest es el test runner declarado en el stack; esta skill es de Anthony Fu (mantenedor del ecosistema Vite/Vitest), cubre buenas prácticas específicas del runner (mocking, fixtures, config) que la skill genérica de TDD no cubre."
+      },
+      {
+        "name": "typescript-advanced-types",
+        "source": "wshobson/agents@typescript-advanced-types",
+        "installs": "87K",
+        "why": "El modelo de dominio necesita tipos que expresen intervalos [inicio, fin), estados de turno y uniones discriminadas (ej. resultado válido vs. error de negocio por solapamiento); esta skill cubre ese nivel de tipado avanzado en TS puro, sin frameworks."
+      },
+      {
+        "name": "javascript-testing-patterns",
+        "source": "wshobson/agents@javascript-testing-patterns",
+        "installs": "20K",
+        "why": "Complemento opcional a tdd/vitest: patrones generales de testing en JS/TS (tabla de casos, test doubles) útiles para cubrir los ≥3 escenarios requeridos (feliz, error de negocio, borde) del change C-01."
+      },
+      {
+        "name": "zod",
+        "source": "pproenca/dot-skills@zod",
+        "installs": "6.8K",
+        "why": "Opcional/baja confianza (pocas instalaciones, autor no reconocido): útil solo si se decide validar en runtime los datos de entrada del dominio (fechas, duración de prestación) con Zod en lugar de solo tipos estáticos."
+      }
+    ],
+    "not_recommended_notes": [
+      "Se buscaron skills de 'scheduling' y 'calendar' en skills.sh: los resultados relevantes (Lark Calendar, Google Workspace Calendar, event-planning) son todos integraciones con calendarios/APIs externas (Lark, Google), no modelado de reglas de negocio de turnos; no aplican a un módulo de dominio puro sin integraciones ni UI, así que no se incluyen en la lista."
+    ],
+    "installed": ["tdd", "vitest"]
   }
 }
