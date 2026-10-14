@@ -8,23 +8,24 @@
 
 ## 1. Scaffolding del proyecto
 
-- [ ] 1.1 Crear `package.json` (`"type": "module"`, scripts `test` = `vitest run`, `test:watch` = `vitest`, `typecheck` = `tsc --noEmit`) e instalar `typescript` y `vitest` como devDependencies; verificar que `npm install` termina sin errores
-- [ ] 1.2 Crear `tsconfig.json` con `strict: true`, `noUncheckedIndexedAccess`, `noImplicitOverride`, `target: ES2022`, `module`/`moduleResolution: Bundler`, `noEmit`, `include: ["src", "tests"]`; verificar con `npm run typecheck`
-- [ ] 1.3 Crear `vitest.config.ts` (`include: ['tests/**/*.test.ts']`, entorno `node`) y los directorios `src/domain/{entidades,value-objects,servicios/validaciones,errores,puertos}` y `tests/{domain,soporte}`; verificar que `npm test` corre (sin tests o con un test de humo que luego se elimina)
-- [ ] 1.4 Confirmar con el usuario los seams de test propuestos en `design.md` §7 (`ServicioDeTurnos.crear`, `IntervaloTiempo` constructor + `seSolapaCon`, constructor de `Prestacion`) antes de escribir el primer test; registrar la confirmación en este archivo
+- [x] 1.1 Crear `package.json` (`"type": "module"`, scripts `test` = `vitest run`, `test:watch` = `vitest`, `typecheck` = `tsc --noEmit`) e instalar `typescript` y `vitest` como devDependencies; verificar que `npm install` termina sin errores
+- [x] 1.2 Crear `tsconfig.json` con `strict: true`, `noUncheckedIndexedAccess`, `noImplicitOverride`, `target: ES2022`, `module`/`moduleResolution: Bundler`, `noEmit`, `include: ["src", "tests"]`; verificar con `npm run typecheck`
+- [x] 1.3 Crear `vitest.config.ts` (`include: ['tests/**/*.test.ts']`, entorno `node`) y los directorios `src/domain/{entidades,value-objects,servicios/validaciones,errores,puertos}` y `tests/{domain,soporte}`; verificar que `npm test` corre (sin tests o con un test de humo que luego se elimina)
+- [x] 1.4 Confirmar con el usuario los seams de test propuestos en `design.md` §7 (`ServicioDeTurnos.crear`, `IntervaloTiempo` constructor + `seSolapaCon`, constructor de `Prestacion`) antes de escribir el primer test; registrar la confirmación en este archivo
+  - Confirmado por el usuario el 2026-10-14: seams de `design.md` §7 tal como se propusieron: (1) `ServicioDeTurnos.crear` con fakes en memoria, (2) `IntervaloTiempo` (constructor + `seSolapaCon`), (3) constructor de `Prestacion`; los errores se verifican solo indirectamente y las validaciones individuales no son seams.
 
 ## 2. Value object `IntervaloTiempo` (seam: constructor + `seSolapaCon`)
 
-- [ ] 2.1 RED/GREEN: intervalo válido se construye — escenario "Intervalo válido"; crea `ErrorDeDominio` (abstracta) e `IntervaloTiempo`; verificar `npm test`
-- [ ] 2.2 RED/GREEN: intervalo vacío y luego invertido lanzan `IntervaloInvalidoError` (extiende `ErrorDeDominio`) — escenarios "Intervalo vacío" e "Intervalo invertido"; verificar `npm test`
-- [ ] 2.3 RED/GREEN/TRIANGULATE: `seSolapaCon` — escenario "Intervalos solapados y contiguos" (A solapa con B, A no solapa con C), más un caso disjunto y uno de contención total; verificar `npm test`
-- [ ] 2.4 RED/GREEN: `IntervaloTiempo.desdeDuracion(inicio, minutos)` calcula `fin` en ms (10:00 + 30 → 10:30, 11:00 + 60 → 12:00, con `-03:00`); verificar `npm test`
+- [x] 2.1 RED/GREEN: intervalo válido se construye — escenario "Intervalo válido"; crea `ErrorDeDominio` (abstracta) e `IntervaloTiempo`; verificar `npm test`
+- [x] 2.2 RED/GREEN: intervalo vacío y luego invertido lanzan `IntervaloInvalidoError` (extiende `ErrorDeDominio`) — escenarios "Intervalo vacío" e "Intervalo invertido"; verificar `npm test`
+- [x] 2.3 RED/GREEN/TRIANGULATE: `seSolapaCon` — escenario "Intervalos solapados y contiguos" (A solapa con B, A no solapa con C), más un caso disjunto y uno de contención total; verificar `npm test`
+- [x] 2.4 RED/GREEN: `IntervaloTiempo.desdeDuracion(inicio, minutos)` calcula `fin` en ms (10:00 + 30 → 10:30, 11:00 + 60 → 12:00, con `-03:00`); verificar `npm test`
 
 ## 3. Entidad `Prestacion` y entidades mínimas (seam: constructor de `Prestacion`)
 
-- [ ] 3.1 RED/GREEN: prestación con duración 30 se construye — escenario "Duración válida"; verificar `npm test`
-- [ ] 3.2 RED/GREEN/TRIANGULATE: duración 0, -30 y 30.5 lanzan `DuracionInvalidaError` — escenarios "Duración cero", "Duración negativa", "Duración no entera"; verificar `npm test`
-- [ ] 3.3 Crear `Profesional` (`id`, `nombre`, sin horarios), `Sillon` (`id`, `nombre`), `Paciente` (`id`, `nombre`, sin contacto), el tipo `EstadoTurno = 'confirmado' | 'cancelado'` y `Turno` (con `intervalo`, getters `inicio`/`fin`, `estado`) sin lógica propia; quedan cubiertos por los tests del servicio (sección 4); verificar `npm run typecheck`
+- [x] 3.1 RED/GREEN: prestación con duración 30 se construye — escenario "Duración válida"; verificar `npm test`
+- [x] 3.2 RED/GREEN/TRIANGULATE: duración 0, -30 y 30.5 lanzan `DuracionInvalidaError` — escenarios "Duración cero", "Duración negativa", "Duración no entera"; verificar `npm test`
+- [x] 3.3 Crear `Profesional` (`id`, `nombre`, sin horarios), `Sillon` (`id`, `nombre`), `Paciente` (`id`, `nombre`, sin contacto), el tipo `EstadoTurno = 'confirmado' | 'cancelado'` y `Turno` (con `intervalo`, getters `inicio`/`fin`, `estado`) sin lógica propia; quedan cubiertos por los tests del servicio (sección 4); verificar `npm run typecheck`
 
 ## 4. `ServicioDeTurnos.crear` (seam: `crear` con fakes en memoria)
 
