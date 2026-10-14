@@ -29,30 +29,30 @@
 
 ## 4. `ServicioDeTurnos.crear` (seam: `crear` con fakes en memoria)
 
-- [ ] 4.1 Crear los puertos `Reloj`, `RepositorioDeTurnos` (`todos`, `guardar`, `proximoId`) y `CatalogoDeAgenda`, y en `tests/soporte/` los fakes `RelojFijo`, `RepositorioDeTurnosEnMemoria`, `CatalogoEnMemoria` y los datos ficticios de referencia del spec; verificar `npm run typecheck`
-- [ ] 4.2 RED/GREEN: caso feliz — escenario "Caso feliz con profesional y sillón libres (CA-1)": turno `confirmado`, intervalo `[10:00, 10:30)`, registrado en el repositorio; verificar `npm test`
-- [ ] 4.3 RED/GREEN (triangulación de RN-TU-05): escenario "La duración la define la prestación elegida" (`prest-extraccion` → fin 12:00); verificar `npm test`
-- [ ] 4.4 RED/GREEN: escenario "Turno con inicio en el pasado (CA-5)" → `TurnoEnElPasadoError`, nada registrado; introduce la cadena `validacionesDeCreacion` con `NoEnElPasado`; verificar `npm test`
-- [ ] 4.5 RED/GREEN: escenarios "Turno con inicio exactamente igual a ahora (borde)" (rechazo) y "Turno con inicio un minuto después de ahora" (acepta); verificar `npm test`
-- [ ] 4.6 RED/GREEN: escenario "Solapamiento parcial por profesional (CA-2)" → `SolapamientoError` con `recurso = 'profesional'`, solo queda el turno existente; agrega `ProfesionalLibre`; verificar `npm test`
-- [ ] 4.7 TRIANGULATE: escenarios "Turno nuevo que contiene por completo a uno existente del profesional" (rechazo) y "Otro profesional en otro sillón no genera conflicto" (acepta); verificar `npm test`
-- [ ] 4.8 RED/GREEN: escenario "Solapamiento por sillón entre profesionales distintos (CA-3)" → `SolapamientoError` con `recurso = 'sillon'`; agrega `SillonLibre`; verificar `npm test`
-- [ ] 4.9 RED/GREEN: escenarios "Turno que empieza cuando termina otro del mismo profesional y sillón (CA-4)" y "Turno que termina cuando empieza otro del mismo profesional y sillón" → ambos turnos registrados; verificar `npm test`
-- [ ] 4.10 RED/GREEN: escenario "Un turno cancelado no bloquea al profesional ni al sillón" (turno `cancelado` sembrado en el fake) → se crea; el filtrado por `confirmado` vive en las validaciones, no en el fake; verificar `npm test`
-- [ ] 4.11 RED/GREEN: escenario "Un turno creado bloquea las creaciones posteriores" (dos llamadas a `crear` sobre el mismo repositorio); verificar `npm test`
-- [ ] 4.12 RED/GREEN: orden de validación — escenarios "Turno en el pasado que además se solapa" (`TurnoEnElPasadoError`), "Conflicto simultáneo de profesional y sillón" y "Conflicto de profesional y de sillón contra turnos distintos" (ambos `recurso = 'profesional'`); verificar `npm test`
-- [ ] 4.13 RED/GREEN/TRIANGULATE: referencias inexistentes — escenarios "Profesional inexistente", "Sillón inexistente", "Paciente inexistente", "Prestación inexistente" → `EntidadNoEncontradaError` con `entidad` e `id` correctos y nada registrado; luego escenario de orden "Prestación inexistente con inicio en el pasado" → `EntidadNoEncontradaError` (paso 0 gana sobre el pasado); verificar `npm test`
-- [ ] 4.14 RED/GREEN: errores de dominio — escenarios "El error de solapamiento es reconocible como error de dominio" y "El error de turno en el pasado es reconocible como error de dominio" (`toThrow(ErrorDeDominio)` además de la clase concreta); verificar `npm test`
-- [ ] 4.15 Escenario "Intento de sobreturno del mismo profesional en otro sillón con el mismo intervalo" → `SolapamientoError` con `recurso = 'profesional'`; verificar `npm test` (debería pasar sin código nuevo; si pasa en verde de entrada, confirmar que falla al invertir temporalmente la condición de `ProfesionalLibre`)
-- [ ] 4.16 Escenario "Mismo paciente en dos turnos superpuestos con recursos distintos" → se crea (documenta que el solapamiento por paciente no se valida, D-01); verificar `npm test`
-- [ ] 4.17 REFACTOR: revisar nombres, eliminar duplicación en tests (builders de solicitudes con datos ficticios) y en validaciones (`ProfesionalLibre`/`SillonLibre`), sin cambiar comportamiento; verificar `npm test` en verde después de cada paso
+- [x] 4.1 Crear los puertos `Reloj`, `RepositorioDeTurnos` (`todos`, `guardar`, `proximoId`) y `CatalogoDeAgenda`, y en `tests/soporte/` los fakes `RelojFijo`, `RepositorioDeTurnosEnMemoria`, `CatalogoEnMemoria` y los datos ficticios de referencia del spec; verificar `npm run typecheck`
+- [x] 4.2 RED/GREEN: caso feliz — escenario "Caso feliz con profesional y sillón libres (CA-1)": turno `confirmado`, intervalo `[10:00, 10:30)`, registrado en el repositorio; verificar `npm test`
+- [x] 4.3 RED/GREEN (triangulación de RN-TU-05): escenario "La duración la define la prestación elegida" (`prest-extraccion` → fin 12:00); verificar `npm test`
+- [x] 4.4 RED/GREEN: escenario "Turno con inicio en el pasado (CA-5)" → `TurnoEnElPasadoError`, nada registrado; introduce la cadena `validacionesDeCreacion` con `NoEnElPasado`; verificar `npm test`
+- [x] 4.5 RED/GREEN: escenarios "Turno con inicio exactamente igual a ahora (borde)" (rechazo) y "Turno con inicio un minuto después de ahora" (acepta); verificar `npm test`
+- [x] 4.6 RED/GREEN: escenario "Solapamiento parcial por profesional (CA-2)" → `SolapamientoError` con `recurso = 'profesional'`, solo queda el turno existente; agrega `ProfesionalLibre`; verificar `npm test`
+- [x] 4.7 TRIANGULATE: escenarios "Turno nuevo que contiene por completo a uno existente del profesional" (rechazo) y "Otro profesional en otro sillón no genera conflicto" (acepta); verificar `npm test`
+- [x] 4.8 RED/GREEN: escenario "Solapamiento por sillón entre profesionales distintos (CA-3)" → `SolapamientoError` con `recurso = 'sillon'`; agrega `SillonLibre`; verificar `npm test`
+- [x] 4.9 RED/GREEN: escenarios "Turno que empieza cuando termina otro del mismo profesional y sillón (CA-4)" y "Turno que termina cuando empieza otro del mismo profesional y sillón" → ambos turnos registrados; verificar `npm test`
+- [x] 4.10 RED/GREEN: escenario "Un turno cancelado no bloquea al profesional ni al sillón" (turno `cancelado` sembrado en el fake) → se crea; el filtrado por `confirmado` vive en las validaciones, no en el fake; verificar `npm test`
+- [x] 4.11 RED/GREEN: escenario "Un turno creado bloquea las creaciones posteriores" (dos llamadas a `crear` sobre el mismo repositorio); verificar `npm test`
+- [x] 4.12 RED/GREEN: orden de validación — escenarios "Turno en el pasado que además se solapa" (`TurnoEnElPasadoError`), "Conflicto simultáneo de profesional y sillón" y "Conflicto de profesional y de sillón contra turnos distintos" (ambos `recurso = 'profesional'`); verificar `npm test`
+- [x] 4.13 RED/GREEN/TRIANGULATE: referencias inexistentes — escenarios "Profesional inexistente", "Sillón inexistente", "Paciente inexistente", "Prestación inexistente" → `EntidadNoEncontradaError` con `entidad` e `id` correctos y nada registrado; luego escenario de orden "Prestación inexistente con inicio en el pasado" → `EntidadNoEncontradaError` (paso 0 gana sobre el pasado); verificar `npm test`
+- [x] 4.14 RED/GREEN: errores de dominio — escenarios "El error de solapamiento es reconocible como error de dominio" y "El error de turno en el pasado es reconocible como error de dominio" (`toThrow(ErrorDeDominio)` además de la clase concreta); verificar `npm test`
+- [x] 4.15 Escenario "Intento de sobreturno del mismo profesional en otro sillón con el mismo intervalo" → `SolapamientoError` con `recurso = 'profesional'`; verificar `npm test` (debería pasar sin código nuevo; si pasa en verde de entrada, confirmar que falla al invertir temporalmente la condición de `ProfesionalLibre`)
+- [x] 4.16 Escenario "Mismo paciente en dos turnos superpuestos con recursos distintos" → se crea (documenta que el solapamiento por paciente no se valida, D-01); verificar `npm test`
+- [x] 4.17 REFACTOR: revisar nombres, eliminar duplicación en tests (builders de solicitudes con datos ficticios) y en validaciones (`ProfesionalLibre`/`SillonLibre`), sin cambiar comportamiento; verificar `npm test` en verde después de cada paso
 
 ## 5. Verificación final de integración y reglas duras
 
-- [ ] 5.1 Verificar que no hay `any` en `src/` ni en `tests/` (búsqueda de `: any`, `as any`, `<any>`, `any[]` sin resultados) y que `npm run typecheck` pasa con `strict: true`
-- [ ] 5.2 Verificar que no hay `new Date()` sin argumentos ni `Date.now()` en `src/domain` (búsqueda sin resultados) y que el dominio no importa nada fuera de `src/domain` (sin imports de paquetes npm)
-- [ ] 5.3 Verificar que todas las fechas literales de `tests/` tienen offset `-03:00` y que los datos de pacientes son los ficticios del spec
-- [ ] 5.4 Verificar trazabilidad: cada escenario de `specs/gestion-de-turnos/spec.md` tiene al menos un test con nombre en vocabulario de dominio que lo referencia; `npm test` completo en verde
+- [x] 5.1 Verificar que no hay `any` en `src/` ni en `tests/` (búsqueda de `: any`, `as any`, `<any>`, `any[]` sin resultados) y que `npm run typecheck` pasa con `strict: true`
+- [x] 5.2 Verificar que no hay `new Date()` sin argumentos ni `Date.now()` en `src/domain` (búsqueda sin resultados) y que el dominio no importa nada fuera de `src/domain` (sin imports de paquetes npm)
+- [x] 5.3 Verificar que todas las fechas literales de `tests/` tienen offset `-03:00` y que los datos de pacientes son los ficticios del spec
+- [x] 5.4 Verificar trazabilidad: cada escenario de `specs/gestion-de-turnos/spec.md` tiene al menos un test con nombre en vocabulario de dominio que lo referencia; `npm test` completo en verde
 
 ## Workflow follow-up
 

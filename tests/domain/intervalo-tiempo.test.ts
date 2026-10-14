@@ -10,8 +10,8 @@ describe('IntervaloTiempo', () => {
         new Date('2026-11-02T10:30:00-03:00'),
       );
 
-      expect(intervalo.inicio.toISOString()).toBe('2026-11-02T13:00:00.000Z');
-      expect(intervalo.fin.toISOString()).toBe('2026-11-02T13:30:00.000Z');
+      expect(intervalo.inicio).toEqual(new Date('2026-11-02T10:00:00-03:00'));
+      expect(intervalo.fin).toEqual(new Date('2026-11-02T10:30:00-03:00'));
     });
 
     it('rechaza un intervalo vacío (inicio igual a fin)', () => {
@@ -69,13 +69,13 @@ describe('IntervaloTiempo', () => {
     it('calcula el fin sumando 30 minutos al inicio', () => {
       const intervalo = IntervaloTiempo.desdeDuracion(new Date('2026-11-02T10:00:00-03:00'), 30);
 
-      expect(intervalo.fin.toISOString()).toBe('2026-11-02T13:30:00.000Z');
+      expect(intervalo.fin).toEqual(new Date('2026-11-02T10:30:00-03:00'));
     });
 
     it('calcula el fin sumando 60 minutos al inicio', () => {
       const intervalo = IntervaloTiempo.desdeDuracion(new Date('2026-11-02T11:00:00-03:00'), 60);
 
-      expect(intervalo.fin.toISOString()).toBe('2026-11-02T15:00:00.000Z');
+      expect(intervalo.fin).toEqual(new Date('2026-11-02T12:00:00-03:00'));
     });
   });
 });
